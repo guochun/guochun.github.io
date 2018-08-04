@@ -62,49 +62,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-用CSS如何化太极图" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/04/用CSS如何化太极图/" class="article-date">
-  <time datetime="2018-08-04T09:32:28.973Z" itemprop="datePublished">2018-08-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>太极图是指代表阴阳（太极）思想的中国符号，有时也泛指历史上其他文化中所使用的与中国太极图相似的几何图案。  </p>
-<p>这类符号标志大部分是由两个不同颜色的半圆形泪珠状曲线组成，称为黑白阴阳双鱼。  </p>
-<p>废话少说对于程序员来说我们是用代码交流的人群直接用代码说话。</p>
-<p>首先先用一张太极图压压惊:</p>
-<p> <img src="https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D600%2C800/sign=0924f945805494ee8777071f1dc5ccc6/6159252dd42a2834ce614ef157b5c9ea14cebf01.jpg" alt="太极">    </p>
-<p>​<br><strong>1 第一种方法:</strong> </p>
-<p>html结构:     </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  &lt;div id=&quot;yinyang&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;yin&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;yang-inner&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;yang&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;ying-inner&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>css结构：   </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">/*添加一个灰色的背景*/</span><br><span class="line">body&#123;</span><br><span class="line">  background: #eee;</span><br><span class="line">&#125;</span><br><span class="line">/*画出八卦图的整体部分*/</span><br><span class="line">#yinyang &#123;</span><br><span class="line">  </span><br><span class="line">  width: 200px;</span><br><span class="line">  height: 200px;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background: linear-gradient(to bottom, #ffffff 0%,#ffffff 50%,#000000    52%,#000000 100%); </span><br><span class="line">  position:relative;</span><br><span class="line">  margin: 200px auto;</span><br><span class="line">&#125;</span><br><span class="line">/*八卦的黑色圆环叠加到整体的内部形成半圆形泪珠*/</span><br><span class="line">#yinyang .yin &#123;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background: #000;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50px;</span><br><span class="line">  left:0;</span><br><span class="line">&#125;</span><br><span class="line">/*画出内部的白色小圆环*/</span><br><span class="line">#yinyang .yin .yang-inner &#123;</span><br><span class="line">  width: 20px;</span><br><span class="line">  height: 20px;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background: #fff;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 40px;</span><br><span class="line">  left: 40px;</span><br><span class="line">&#125;</span><br><span class="line">/*八卦的白色圆环叠加到整体的内部形成半圆形泪珠*/</span><br><span class="line">#yinyang .yang &#123;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background: #fff;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50px;</span><br><span class="line">  right: 0;</span><br><span class="line">&#125;</span><br><span class="line">/*画出内部的黑色的小圆环*/</span><br><span class="line">#yinyang .yang .ying-inner &#123;</span><br><span class="line">    width: 20px;</span><br><span class="line">    height: 20px;</span><br><span class="line">    border-radius: 50%;</span><br><span class="line">    background: #000;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 40px;</span><br><span class="line">    left: 40px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>2 第二种方法</strong>  </p>
-<p>html结构</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;yinyang&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p> css结构</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">/*画出八卦的整体*/</span><br><span class="line">#yinyang&#123;</span><br><span class="line">  width: 196px;</span><br><span class="line">  height: 98px;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  border-top: 2px solid black;</span><br><span class="line">  border-left: 2px solid black;</span><br><span class="line">  border-right: 2px solid black;</span><br><span class="line">  border-bottom:100px solid black;</span><br><span class="line">  background: #fff;</span><br><span class="line">  position: relative;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*伪类画出八卦的黑色的部分*/</span><br><span class="line">#yinyang::before&#123;</span><br><span class="line">  </span><br><span class="line">  content: &quot;&quot;;</span><br><span class="line">  display:block;</span><br><span class="line">  width: 20px;</span><br><span class="line">  height: 20px;</span><br><span class="line">  border: 40px solid #000;</span><br><span class="line">  background: #fff;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top:50px;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*伪类画出八卦的白色的部分*/</span><br><span class="line">#yinyang::after &#123;</span><br><span class="line">  content: &quot;&quot;;</span><br><span class="line">  display:block;</span><br><span class="line">  width: 20px;</span><br><span class="line">  height:20px;</span><br><span class="line">  border: 40px solid #fff;</span><br><span class="line">  background: #000;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top:50px;</span><br><span class="line">  left:49%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最后推荐一个<a href="https://css-tricks.com/examples/ShapesOfCSS/" target="_blank" rel="noopener">网站</a>第二个方法参考了这个网站。</p>
-<p>​<br>​    </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/04/用CSS如何化太极图/" data-id="cjkf8ay5o0001p8ut44xcpoat" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-purcy" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/04/purcy/" class="article-date">
@@ -131,7 +88,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/04/purcy/" data-id="cjkf8ay5o0000p8utir8l0cts" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/04/purcy/" data-id="cjkf8ecrn0000o0utqej3lbo4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -170,10 +127,6 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2018/08/04/用CSS如何化太极图/">(no title)</a>
-          </li>
         
           <li>
             <a href="/2018/08/04/purcy/">purcy</a>
