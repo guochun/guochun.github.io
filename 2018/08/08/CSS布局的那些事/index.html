@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>CSS布局的那些事 | PURCY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="页面布局是web前端的重要的知识点。当我们写页面最开始考虑的就是页面布局。下面由一道面试题说一说CSS页面布局的那些事。 题目: 高度已知,请写出三栏布局, 其中左栏 右栏宽度各为300px,中间自适应？ 1: 浮动布局(float)   优点：  兼容性比较好,几乎可以适配现代的所有浏览器。 缺点： 浮动会脱离文档流 需要清除浮动 处理周边元素的关系。 html  123456789&amp;lt;se">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS布局的那些事">
+<meta property="og:url" content="http://yoursite.com/2018/08/08/CSS布局的那些事/index.html">
+<meta property="og:site_name" content="PURCY">
+<meta property="og:description" content="页面布局是web前端的重要的知识点。当我们写页面最开始考虑的就是页面布局。下面由一道面试题说一说CSS页面布局的那些事。 题目: 高度已知,请写出三栏布局, 其中左栏 右栏宽度各为300px,中间自适应？ 1: 浮动布局(float)   优点：  兼容性比较好,几乎可以适配现代的所有浏览器。 缺点： 浮动会脱离文档流 需要清除浮动 处理周边元素的关系。 html  123456789&amp;lt;se">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-07T16:04:39.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS布局的那些事">
+<meta name="twitter:description" content="页面布局是web前端的重要的知识点。当我们写页面最开始考虑的就是页面布局。下面由一道面试题说一说CSS页面布局的那些事。 题目: 高度已知,请写出三栏布局, 其中左栏 右栏宽度各为300px,中间自适应？ 1: 浮动布局(float)   优点：  兼容性比较好,几乎可以适配现代的所有浏览器。 缺点： 浮动会脱离文档流 需要清除浮动 处理周边元素的关系。 html  123456789&amp;lt;se">
+  
+    <link rel="alternate" href="/atom.xml" title="PURCY" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">PURCY</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CSS布局的那些事" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/08/CSS布局的那些事/" class="article-date">
+  <time datetime="2018-08-07T16:03:33.000Z" itemprop="datePublished">2018-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS布局的那些事
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>页面布局是web前端的重要的知识点。当我们写页面最开始考虑的就是页面布局。下面由一道面试题说一说CSS页面布局的那些事。</p>
+<p><strong>题目: 高度已知,请写出三栏布局, 其中左栏 右栏宽度各为300px,中间自适应？</strong></p>
+<p><strong>1: 浮动布局(float)</strong>  </p>
+<p><strong>优点：</strong>  兼容性比较好,几乎可以适配现代的所有浏览器。</p>
+<p><strong>缺点：</strong> 浮动会脱离文档流 需要清除浮动 处理周边元素的关系。</p>
+<p><strong>html</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;float&quot;&gt;</span><br><span class="line">   &lt;article class=&quot;container clearfix&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">         &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;浮动布局&lt;/h1&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">   &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>css</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">section.float&gt;.container&gt;div&#123;</span><br><span class="line">    min-height: 300px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.float&gt;.container&gt;.left&#123;</span><br><span class="line">    float: left;</span><br><span class="line">    width: 300px;</span><br><span class="line">    background: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.float&gt;.container&gt;.right&#123;</span><br><span class="line">    float: right;</span><br><span class="line">    width: 300px;</span><br><span class="line">    background: blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.float&gt;.container&gt;.center&#123;</span><br><span class="line">    background: yellow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.float&gt;.container&gt;.center&gt;h1&#123;</span><br><span class="line">   text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.clearfix::after&#123;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    display: block;</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>2: 绝对定位(position: absolute)</strong>  </p>
+<p><strong>优点：</strong> 简单 快捷。 </p>
+<p><strong>缺点：</strong> 布局脱离文档流也意味着子元素也要脱离文档流导致可使用性比较差。</p>
+<p><strong>html</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;absolute&quot;&gt;</span><br><span class="line">   &lt;article class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;绝对定位&lt;/h1&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">   &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>css</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">section.absolute&gt;.container&gt;div&#123;</span><br><span class="line">    min-height: 300px;</span><br><span class="line">    position: absolute;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.absolute&gt;.container&gt;.left&#123;</span><br><span class="line">    left: 0px;</span><br><span class="line">    width: 300px;</span><br><span class="line">    background: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.absolute&gt;.container&gt;.right&#123;</span><br><span class="line">    right: 0px;</span><br><span class="line">    width: 300px;</span><br><span class="line">    background: blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.absolute&gt;.container&gt;.center&#123;</span><br><span class="line">    left: 300px;</span><br><span class="line">    right: 300px;</span><br><span class="line">    background: yellow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.absolute&gt;.container&gt;.center&gt;h1&#123;</span><br><span class="line">   text-align: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>3: 弹性盒布局(flexbox)</strong></p>
+<p><strong>优点</strong>：flexbox是为了解决上面两种问题出现的新解决方案解决移动端布局问题。 </p>
+<p><strong>缺点：</strong> 对于一些老的浏览器不兼容。</p>
+<p><strong>html</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;flexbox&quot;&gt;</span><br><span class="line">    &lt;article class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;弹性盒布局&lt;/h1&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>css</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">section.flexbox&gt;.container &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.flexbox&gt;.container&gt;div &#123;</span><br><span class="line">    min-height: 300px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.flexbox&gt;.container&gt;.left &#123;</span><br><span class="line"></span><br><span class="line">    width: 300px;</span><br><span class="line">    background: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.flexbox&gt;.container&gt;.right &#123;</span><br><span class="line"></span><br><span class="line">    width: 300px;</span><br><span class="line">    background: blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.flexbox.container&gt;.center &#123;</span><br><span class="line">    flex: 1;</span><br><span class="line">    background: yellow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.flexbox&gt;.container&gt;.center&gt;h1 &#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>4: 表格布局(display: table)</strong>  </p>
+<p><strong>优点：</strong> 兼容性比较好在考虑flex布局兼容性的问题表格布局最佳选择。</p>
+<p><strong>缺点：</strong>  对seo不友好 复杂 繁琐。 </p>
+<p><strong>html</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;table&quot;&gt;</span><br><span class="line">   &lt;article class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;表格布局&lt;/h1&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">   &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>css</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">section.table&gt;.container&#123;</span><br><span class="line">    display: table;</span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 300px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.table&gt;.container&gt;div&#123;</span><br><span class="line">   display: table-cell;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.table&gt;.container&gt;.left&#123;</span><br><span class="line"> </span><br><span class="line">    width: 300px;</span><br><span class="line">    background: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.table&gt;.container&gt;.right&#123;</span><br><span class="line">   </span><br><span class="line">    width: 300px;</span><br><span class="line">    background: blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.table&gt;.container&gt;.center&#123;</span><br><span class="line">    background: yellow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">section.table&gt;.container&gt;.center&gt;h1&#123;</span><br><span class="line">   text-align: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>5: 网格布局(grid)</strong></p>
+<p><strong>优点：</strong> 比较完美的解决方案。</p>
+<p><strong>缺点：</strong> 兼容性比较差 复杂。</p>
+<p><strong>html</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;grid&quot;&gt;</span><br><span class="line">   &lt;article class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            &lt;h1&gt;网格布局&lt;/h1&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">   &lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>css</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">section.grid&gt;.container&#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    width: 100%;</span><br><span class="line">    grid-template-rows: 300px;</span><br><span class="line">    grid-template-columns: 300px auto 300px;</span><br><span class="line">&#125;</span><br><span class="line">section.grid&gt;.container&gt;.left&#123;</span><br><span class="line">    background: red;</span><br><span class="line">&#125;</span><br><span class="line">section.grid&gt;.container&gt;.right&#123;</span><br><span class="line">    background: blue;</span><br><span class="line">&#125;</span><br><span class="line">section.grid&gt;.container&gt;.center&#123;</span><br><span class="line">    background: yellow;</span><br><span class="line">&#125;</span><br><span class="line">section.grid&gt;.container&gt;.center&gt;h1&#123;</span><br><span class="line">   text-align: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>更多关于页面布局请点击<a href="https://css-tricks.com/guides/layout/" target="_blank" rel="noopener">这里</a>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/08/CSS布局的那些事/" data-id="cjkjwbip40004zgutiyfkbw21" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/07/CSS如何实现元素居中/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CSS如何实现元素居中</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 10px;">CSS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/08/CSS布局的那些事/">CSS布局的那些事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/07/CSS如何实现元素居中/">CSS如何实现元素居中</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/04/用CSS如何画太极图/">用CSS如何画太极图</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/04/purcy/">purcy</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 purcy<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
