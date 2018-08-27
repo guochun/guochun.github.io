@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>typeof null的历史 | PURCY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在javaScript, ==’typeof null is object’== 于是让一些人误认为null是一个对象(null不是对象,它是一个原生类型)。这是一个bug而且很不辛运的是不能被修复。因为这 样会打破先存在的代码。下面让我们探索bug的历史吧。 ==’typeof null’== 这个bug在js第一个版本已经遗留下来了。在这个版本值以32位的形式被存储。它们由类型标签(1-3b">
+<meta name="keywords" content="JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="typeof null的历史">
+<meta property="og:url" content="http://yoursite.com/2018/08/27/typeofnull的历史/index.html">
+<meta property="og:site_name" content="PURCY">
+<meta property="og:description" content="在javaScript, ==’typeof null is object’== 于是让一些人误认为null是一个对象(null不是对象,它是一个原生类型)。这是一个bug而且很不辛运的是不能被修复。因为这 样会打破先存在的代码。下面让我们探索bug的历史吧。 ==’typeof null’== 这个bug在js第一个版本已经遗留下来了。在这个版本值以32位的形式被存储。它们由类型标签(1-3b">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-27T12:28:32.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="typeof null的历史">
+<meta name="twitter:description" content="在javaScript, ==’typeof null is object’== 于是让一些人误认为null是一个对象(null不是对象,它是一个原生类型)。这是一个bug而且很不辛运的是不能被修复。因为这 样会打破先存在的代码。下面让我们探索bug的历史吧。 ==’typeof null’== 这个bug在js第一个版本已经遗留下来了。在这个版本值以32位的形式被存储。它们由类型标签(1-3b">
+  
+    <link rel="alternate" href="/atom.xml" title="PURCY" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">PURCY</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-typeofnull的历史" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/27/typeofnull的历史/" class="article-date">
+  <time datetime="2018-08-27T12:15:45.000Z" itemprop="datePublished">2018-08-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      typeof null的历史
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 在javaScript, ==’typeof null is object’== 于是让一些人误认为<em>null</em>是一个对象(null不是对象,它是一个原生类型)。这是一个bug而且很不辛运的是不能被修复。因为这 样会打破先存在的代码。下面让我们探索bug的历史吧。<br> ==’typeof null’== 这个bug在js第一个版本已经遗留下来了。在这个版本值以32位的形式被存储。它们由类型标签(1-3bit)和真实的数据值组成。类型标签在低位被存储。下面是5种数据类型的类型标签的形式。</p>
+<ul>
+<li>000: object。这些数据代表着对象。</li>
+<li>1：int 这些数据是31位的有符号整数</li>
+<li>010：double。这些数据代表着双精度浮点型数值</li>
+<li>100：string 这些数据代表的着字符串。</li>
+<li>110：boolean。这些数据代表着布尔值。  </li>
+</ul>
+<p>两个特殊:  </p>
+<pre><code>undefined(JSVAL_VOID)数值为integer -2^30 
+null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当作为0.
+</code></pre><p> 这也就显而易见的为什么typeof的null是对象了。下面是typeof的JS引擎源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">JS_PUBLIC_API(JSType)</span><br><span class="line">    JS_TypeOfValue(JSContext *cx, jsval v)</span><br><span class="line">    &#123;</span><br><span class="line">        JSType type = JSTYPE_VOID;</span><br><span class="line">        JSObject *obj;</span><br><span class="line">        JSObjectOps *ops;</span><br><span class="line">        JSClass *clasp;</span><br><span class="line"></span><br><span class="line">        CHECK_REQUEST(cx);</span><br><span class="line">        if (JSVAL_IS_VOID(v)) &#123;  // (1)</span><br><span class="line">            type = JSTYPE_VOID;</span><br><span class="line">        &#125; else if (JSVAL_IS_OBJECT(v)) &#123;  // (2)</span><br><span class="line">            obj = JSVAL_TO_OBJECT(v);</span><br><span class="line">            if (obj &amp;&amp;</span><br><span class="line">                (ops = obj-&gt;map-&gt;ops,</span><br><span class="line">                 ops == &amp;js_ObjectOps</span><br><span class="line">                 ? (clasp = OBJ_GET_CLASS(cx, obj),</span><br><span class="line">                    clasp-&gt;call || clasp == &amp;js_FunctionClass) // (3,4)</span><br><span class="line">                 : ops-&gt;call != 0)) &#123;  // (3)</span><br><span class="line">                type = JSTYPE_FUNCTION;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                type = JSTYPE_OBJECT;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else if (JSVAL_IS_NUMBER(v)) &#123;</span><br><span class="line">            type = JSTYPE_NUMBER;</span><br><span class="line">        &#125; else if (JSVAL_IS_STRING(v)) &#123;</span><br><span class="line">            type = JSTYPE_STRING;</span><br><span class="line">        &#125; else if (JSVAL_IS_BOOLEAN(v)) &#123;</span><br><span class="line">            type = JSTYPE_BOOLEAN;</span><br><span class="line">        &#125;</span><br><span class="line">        return type;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>在(1)引擎文件检测v是否为undefined(VOID).这个检查执行了值得比较。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define JSVAL_IS_VOID(v)  ((v) == JSVAL_VOID)</span><br></pre></td></tr></table></figure>
+<p>在(2)检测value是否为对象的标签。如果条件符合调用(3)或者它被内部的属性[[Class]]标记它为是function.所以这个v是个函数。否者他是个对象。这也由typeof null生成的结果。<br>随后检查数值 字符串 布尔。甚至没有显示的检查null。这可以由以下的C的宏执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define JSVAL_IS_NULL(v)  ((v) == JSVAL_NULL)</span><br></pre></td></tr></table></figure>
+<p>这些都是看起来很显而易见的bug。不要忘记了javaScript在极短的时间被完成了第一个版本。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/27/typeofnull的历史/" data-id="cjlc9eatp00031sut3pd1f25p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/24/什么是Vue-js/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">什么是Vue.js</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE/">VUE</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/JS/" style="font-size: 10px;">JS</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/27/typeofnull的历史/">typeof null的历史</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/24/什么是Vue-js/">什么是Vue.js</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/08/CSS布局的那些事/">CSS布局的那些事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/07/CSS如何实现元素居中/">CSS如何实现元素居中</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/04/用CSS如何画太极图/">用CSS如何画太极图</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 purcy<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
