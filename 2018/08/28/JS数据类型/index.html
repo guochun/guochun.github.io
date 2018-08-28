@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>JS数据类型 | PURCY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在JavaScript里使用的每一个值,都属于一种数据类型。也就是因为这些多种的数据类型的支撑才使编程语言更加具有趣味性。目前来说JavaScript一共具有七种数据类型 数值(number) ，字符串(string)， 布尔值(boolean)， undefined，null，对象(object)，symbol(ES6新增加的一种数据类型)  数值(number)：整数和小数(例如1 1.429">
+<meta name="keywords" content="JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS数据类型">
+<meta property="og:url" content="http://yoursite.com/2018/08/28/JS数据类型/index.html">
+<meta property="og:site_name" content="PURCY">
+<meta property="og:description" content="在JavaScript里使用的每一个值,都属于一种数据类型。也就是因为这些多种的数据类型的支撑才使编程语言更加具有趣味性。目前来说JavaScript一共具有七种数据类型 数值(number) ，字符串(string)， 布尔值(boolean)， undefined，null，对象(object)，symbol(ES6新增加的一种数据类型)  数值(number)：整数和小数(例如1 1.429">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-28T07:19:54.979Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS数据类型">
+<meta name="twitter:description" content="在JavaScript里使用的每一个值,都属于一种数据类型。也就是因为这些多种的数据类型的支撑才使编程语言更加具有趣味性。目前来说JavaScript一共具有七种数据类型 数值(number) ，字符串(string)， 布尔值(boolean)， undefined，null，对象(object)，symbol(ES6新增加的一种数据类型)  数值(number)：整数和小数(例如1 1.429">
+  
+    <link rel="alternate" href="/atom.xml" title="PURCY" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">PURCY</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS数据类型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/28/JS数据类型/" class="article-date">
+  <time datetime="2018-08-28T07:19:15.000Z" itemprop="datePublished">2018-08-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS数据类型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在JavaScript里使用的每一个值,都属于一种数据类型。也就是因为这些多种的数据类型的支撑才使编程语言更加具有趣味性。<br>目前来说JavaScript一共具有七种数据类型 数值(number) ，字符串(string)， 布尔值(boolean)， undefined，null，对象(object)，symbol(ES6新增加的一种数据类型)</p>
+<ul>
+<li>数值(number)：整数和小数(例如1 1.429 ).</li>
+<li>字符串(string): 文本(‘hello world’).</li>
+<li>布尔值(boolean): 表示真假的两个特殊值 true表示真 false表示假.</li>
+<li>undefined：表示未定义或者不存在的,因为目前没有定义,所以不具有任何的值。</li>
+<li>null: 表示空值。说明值存在都是为空。</li>
+<li>对象(object): 键值对的hash集合。</li>
+<li>symbol:表示一个唯一的值。  </li>
+</ul>
+<p>通常我们把数值，字符串，布尔值和symbol称为原始数据类型(primitive type).它们是最基本的数据类型，不能再细分。对象则称为合成类型(complex type).因为一个对象往往是多个原始类型组成的。可以看作存放各种数据的容器。至于undefined 和 null，一般看作两个特殊的类型。  </p>
+<p>typeof运算符用来确定这个值是什么类型。</p>
+<p>数值，字符串，布尔值和symbol分别返回 number, string, boolean，symbol</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typeof 3.14 //&quot;number&quot;</span><br><span class="line">typeof &quot;abc&quot; // &quot;string&quot;</span><br><span class="line">typeof true //&quot;boolean&quot;</span><br><span class="line">typeof Symbol(&apos;abc&apos;) // &quot;symbol&quot;</span><br></pre></td></tr></table></figure>
+<p>函数返回function </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function f() &#123;&#125;</span><br><span class="line">typeof f // &quot;function&quot;</span><br></pre></td></tr></table></figure>
+<p>null 和 对象返回object</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123;&#125;</span><br><span class="line">typeof o //&quot;object&quot;</span><br><span class="line">typeof null //&quot;object&quot;</span><br></pre></td></tr></table></figure>
+<p>undefined </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;undefined&apos;</span><br><span class="line">typeof a //undefined</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/28/JS数据类型/" data-id="cjlddt9n60000rsutpndi60js" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/27/typeofnull的历史/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">typeof null的历史</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE/">VUE</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/JS/" style="font-size: 15px;">JS</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/28/JS数据类型/">JS数据类型</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/27/typeofnull的历史/">typeof null的历史</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/24/什么是Vue-js/">什么是Vue.js</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/08/CSS布局的那些事/">CSS布局的那些事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/07/CSS如何实现元素居中/">CSS如何实现元素居中</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 purcy<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
