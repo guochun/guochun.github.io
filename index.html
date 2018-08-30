@@ -62,6 +62,133 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS里的数据类型转换" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/31/JS里的数据类型转换/" class="article-date">
+  <time datetime="2018-08-30T21:20:47.000Z" itemprop="datePublished">2018-08-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/31/JS里的数据类型转换/">JS里的数据类型转换</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>数值型(Number)</li>
+</ol>
+<ul>
+<li><p>转字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 100</span><br><span class="line">a.toString() //&quot;100&quot;</span><br><span class="line">String(a) //&quot;100&quot;</span><br><span class="line">a + &apos;&apos; // &quot;100&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转布尔型</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Boolean(1) // true</span><br><span class="line">Boolean(0) // false</span><br><span class="line">Boolean(NaN) // false</span><br><span class="line"></span><br><span class="line">!!1 //true</span><br><span class="line">!!0 // false</span><br><span class="line">!!NaN //false</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转对象型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Number(1)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>字符串(String)</li>
+</ol>
+<ul>
+<li>转布尔型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Boolean(&apos;purcy&apos;) //true</span><br><span class="line">Boolean(&apos;&apos;) //false</span><br><span class="line"></span><br><span class="line">!!&quot;purcy&quot; // true</span><br><span class="line">!!&apos;&apos; // false</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转数值型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">Number(&apos;11&apos;) //11</span><br><span class="line">Number(&apos;0x11&apos;) //17</span><br><span class="line">Number(&apos;0b11&apos;)//3</span><br><span class="line">Number(&apos;0o11&apos;)//9</span><br><span class="line">Number(&apos; &apos;)//0</span><br><span class="line">Number(&apos;&apos;)//0</span><br><span class="line">Number(&apos;abc&apos;)// NaN</span><br><span class="line">Number(&apos; 11&apos;)//11</span><br><span class="line">Number(&apos;11a&apos;)//NaN</span><br><span class="line">Number(&apos;1.34&apos;) //1.34</span><br><span class="line">Number(&apos;NaN&apos;)//NaN</span><br><span class="line">Number(&apos;Infinity&apos;)//Infinity</span><br><span class="line">Number(&apos;-Infinity&apos;)//-Infinity</span><br><span class="line">Number(&apos;1e3&apos;) // 1000</span><br><span class="line"></span><br><span class="line">parseInt(&apos;11&apos;)//11</span><br><span class="line">parseInt(&apos;0x11&apos;)//17</span><br><span class="line">parseInt(&apos;0b11&apos;)//3</span><br><span class="line">parseInt(&apos;0o11&apos;)//9</span><br><span class="line">parseInt(&apos; &apos;)//NaN</span><br><span class="line">parseInt(&apos;&apos;)//NaN</span><br><span class="line">parseInt(&apos;abc&apos;)//11</span><br><span class="line">parseInt(&apos;11a&apos;)//11</span><br><span class="line">parseInt(&apos;Infinity&apos;) //NaN</span><br><span class="line">parseInt(&apos;1e3&apos;) //1</span><br><span class="line"></span><br><span class="line">//Number()可以转换所有是数值型的字符串如果碰到不能转化的为NaN</span><br><span class="line">//parseInt parseFloat  如果碰到不是数值的字符串立即停止转换并把之前转换的值输出如果第一个值不能转化直接为NaN</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+&quot;11&quot; //11</span><br><span class="line">+&apos;12.3&apos; //12.3</span><br><span class="line">+&apos;1E3&apos; //1000</span><br><span class="line">+&apos;11a&apos; //</span><br><span class="line"></span><br><span class="line">//用运算符 + 也可以达到与Number() 相同的效果</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转对象型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new String(&apos;purcy&apos;)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>布尔型(Boolean)  </li>
+</ol>
+<ul>
+<li>转字符串</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = true</span><br><span class="line">a.toString() //&quot;true&quot;</span><br><span class="line">String(a) //&quot;true&quot;</span><br><span class="line">a + &quot;&quot; // &quot;true&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转数值型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Number(true)  //1</span><br><span class="line">Number(false) //0</span><br><span class="line"></span><br><span class="line">parseInt(true) //NaN</span><br><span class="line">parseInt(false) //NaN</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转对象型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Boolean(true)</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>null  </li>
+</ol>
+<ul>
+<li>转字符串</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String(null) // &quot;null&quot;</span><br><span class="line">null + &apos;&apos; // &quot;null&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转布尔型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Boolean(null) // false</span><br><span class="line">!!null //false</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转数值型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Number(null) // 0</span><br><span class="line"></span><br><span class="line">parseInt(null) //NaN</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>undefined  </li>
+</ol>
+<ul>
+<li>转字符串</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String(undefined) // &quot;undefined&quot;</span><br><span class="line">undefined + &apos;&apos; // &quot;undefined&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转布尔型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Boolean(undefined) //false</span><br><span class="line">!!undefined //false</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转数值型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Number(undefined) // NaN</span><br><span class="line"></span><br><span class="line">parseInt(undefined) //NaN</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>对象型(Object)</li>
+</ol>
+<ul>
+<li>转字符串</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;name: &apos;purcy&apos;&#125;</span><br><span class="line">obj.toString() //&quot;[Object Object]&quot;</span><br><span class="line">obj+ &apos;&apos; // &quot;[Object Object]&quot;</span><br><span class="line">JSON.stringify(obj) // &quot;&#123;&quot;name&quot;:&quot;purcy&quot;&#125;&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转布尔型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;name: &apos;purcy&apos;&#125;</span><br><span class="line">Boolean(obj) //true</span><br><span class="line">Boolean(&#123;&#125;) //true</span><br><span class="line">!!obj //true</span><br><span class="line">!!&#123;&#125; //true</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转数值型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//所有对象转为数值都为NaN</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/31/JS里的数据类型转换/" data-id="cjlh2ra98000358ut19pvogov" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JS数据类型" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/28/JS数据类型/" class="article-date">
@@ -108,7 +235,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/28/JS数据类型/" data-id="cjlddt9n60000rsutpndi60js" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/28/JS数据类型/" data-id="cjlh2ra9j000458utus2r5ij8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
@@ -164,7 +291,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/27/typeofnull的历史/" data-id="cjlddt9nf0001rsutblwhwrav" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/27/typeofnull的历史/" data-id="cjlh2ra9j000558utshavbu4i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
@@ -217,7 +344,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/24/什么是Vue-js/" data-id="cjlddt9nf0005rsutf7r29f9a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/24/什么是Vue-js/" data-id="cjlh2ra9j000858utw7ud6dzz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VUE/">VUE</a></li></ul>
@@ -298,7 +425,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/08/CSS布局的那些事/" data-id="cjlddt9ot000ersutrq3j6d46" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/08/CSS布局的那些事/" data-id="cjlh2ra98000058utc7zirtlj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -417,7 +544,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/07/CSS如何实现元素居中/" data-id="cjlddt9ot000drsututmjigmh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/07/CSS如何实现元素居中/" data-id="cjlh2ra98000158ut5nffr3vv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -472,47 +599,11 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/04/用CSS如何画太极图/" data-id="cjlddt9nf0004rsutwwgbbdqj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/04/用CSS如何画太极图/" data-id="cjlh2ra9j000958utkv994el5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-purcy" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/04/purcy/" class="article-date">
-  <time datetime="2018-08-03T17:20:50.000Z" itemprop="datePublished">2018-08-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/04/purcy/">purcy</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/04/purcy/" data-id="cjlddt9nf0003rsutyh9dy8ln" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -543,7 +634,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/JS/" style="font-size: 15px;">JS</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a>
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a>
     </div>
   </div>
 
@@ -565,6 +656,10 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       <ul>
         
           <li>
+            <a href="/2018/08/31/JS里的数据类型转换/">JS里的数据类型转换</a>
+          </li>
+        
+          <li>
             <a href="/2018/08/28/JS数据类型/">JS数据类型</a>
           </li>
         
@@ -578,10 +673,6 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
         
           <li>
             <a href="/2018/08/08/CSS布局的那些事/">CSS布局的那些事</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/07/CSS如何实现元素居中/">CSS如何实现元素居中</a>
           </li>
         
       </ul>
