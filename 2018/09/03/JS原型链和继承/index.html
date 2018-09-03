@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>JS原型链和继承 | PURCY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在下面的两部分文章我会用自己的想法来解释JavaScript的原型链和继承。 JavaScript一个被鄙视的编程语言可以说JavaScript是最被鄙视的编程语言之一。然而，它也是最被欢迎的编程语言之一，而且我每天会以2各种形式遇见他。 大部分人的迷惑可能来至两个部分的迷惑: 原形链和作用域。JavaScript有着和大部分其他编程语言不同的继承方式和作用域。我想能正确的理解你就可以了解到这些的">
+<meta name="keywords" content="JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS原型链和继承">
+<meta property="og:url" content="http://yoursite.com/2018/09/03/JS原型链和继承/index.html">
+<meta property="og:site_name" content="PURCY">
+<meta property="og:description" content="在下面的两部分文章我会用自己的想法来解释JavaScript的原型链和继承。 JavaScript一个被鄙视的编程语言可以说JavaScript是最被鄙视的编程语言之一。然而，它也是最被欢迎的编程语言之一，而且我每天会以2各种形式遇见他。 大部分人的迷惑可能来至两个部分的迷惑: 原形链和作用域。JavaScript有着和大部分其他编程语言不同的继承方式和作用域。我想能正确的理解你就可以了解到这些的">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-03T09:39:36.205Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS原型链和继承">
+<meta name="twitter:description" content="在下面的两部分文章我会用自己的想法来解释JavaScript的原型链和继承。 JavaScript一个被鄙视的编程语言可以说JavaScript是最被鄙视的编程语言之一。然而，它也是最被欢迎的编程语言之一，而且我每天会以2各种形式遇见他。 大部分人的迷惑可能来至两个部分的迷惑: 原形链和作用域。JavaScript有着和大部分其他编程语言不同的继承方式和作用域。我想能正确的理解你就可以了解到这些的">
+  
+    <link rel="alternate" href="/atom.xml" title="PURCY" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">PURCY</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS原型链和继承" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/03/JS原型链和继承/" class="article-date">
+  <time datetime="2018-09-03T09:35:42.000Z" itemprop="datePublished">2018-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS原型链和继承
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在下面的两部分文章我会用自己的想法来解释JavaScript的原型链和继承。</p>
+<p><strong>JavaScript一个被鄙视的编程语言</strong><br>可以说JavaScript是最被鄙视的编程语言之一。然而，它也是最被欢迎的编程语言之一，而且我每天会以2各种形式遇见他。</p>
+<p>大部分人的迷惑可能来至两个部分的迷惑: 原形链和作用域。<br>JavaScript有着和大部分其他编程语言不同的继承方式和作用域。我想能正确的理解你就可以了解到这些的潜力。</p>
+<p><strong>JavaScript的原形链</strong><br>JS有着完全不同于大部分面向对象语言有趣的继承模型。它实现面向对象的方式不是通过类而是通过方法。这是一个很重要概念去理解JS的面向对象。</p>
+<p><strong>JavaScript的构造器</strong><br>创建一个对象在JavaScript首先你必须定义一个构造函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var LivingEntity = function(location) &#123;</span><br><span class="line">   this.x = location.x;</span><br><span class="line">   this.y = location.y;</span><br><span class="line">   this.z = location.z;</span><br><span class="line">&#125;</span><br><span class="line">//创建一个新的实例</span><br><span class="line">var dog = new LivingEntity(&#123;</span><br><span class="line">    x: 5,</span><br><span class="line">    y：0，</span><br><span class="line">    z: 1</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这个构造函数不在是普通的函数。你可能注意到this的引用,this对于构造函数不是特殊的而且你可以在任何的函数内部去引用到它。通常这是重要的一点在执行函数的作用域中。</p>
+<p>创建一个对象的实例,我们需要用new关键字去调用构造函数。</p>
+<p><strong>方法</strong><br>来让我们看看如何添加一个方法吧。我们把声明的方法加moveWest。方法的功能让x的数值减一。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//在构造函数内部</span><br><span class="line">var LivingEntity = function(location)&#123;</span><br><span class="line">	this.x = location.x;</span><br><span class="line">	this.y = location.y;</span><br><span class="line">	this.z = location.z;</span><br><span class="line">	this.moveWest = function()&#123;</span><br><span class="line">		this.x--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//在构造函数之后</span><br><span class="line">dog.moveWest = function()&#123;</span><br><span class="line">	this.x--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样做不是使用原型构造对象的方法，并且这两种方法都会向内存中添加不必要的匿名函数。</p>
+<p>相反，我们可以在原型链中添加一个匿名函数！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LivingEntity.prototype.moveWest = function()&#123;</span><br><span class="line">	this.x--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果我们这样做，只有一个匿名函数，其引用传递给所有LivingEntity对象。</p>
+<p>但什么是<function> .prototype？ prototype是所有函数的一个属性，并指向一个对象，在该对象中可以分配属性，该属性能够从使用该函数创建的所有对象作为构造函数进行访问。</function></p>
+<p>每个对象都有prototype。我们可以修改它甚至是Object。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.a = 5;</span><br><span class="line"></span><br><span class="line">var v = &#123;&#125;;</span><br><span class="line">console.log(v.a); //5</span><br></pre></td></tr></table></figure>
+<p>对象的原型是一种在类的所有实例中存储公共属性的方法，但是以可重写的方式存储。 如果对象没有对属性的引用，则将检查该对象的原型以查找该属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">LivingEntity.prototype.makeSound = function()&#123;</span><br><span class="line">	console.log(&apos;meow&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//原型链上的</span><br><span class="line">dog.makeSound(); //meow</span><br><span class="line"></span><br><span class="line">dog.makeSound = function()&#123;</span><br><span class="line">	console.log(&apos;woof&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//自己本身的</span><br><span class="line">dog.makeSound(); //woof</span><br></pre></td></tr></table></figure>
+<p><strong>原形链</strong><br>每个对象都有一个原型，包括原型对象。 这个“链”一直向前，直到它到达一个没有原型的对象，通常是Object的原型。 Prototype的“继承”版本涉及在该原型链的末尾添加另一个链接，如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">var Dragon = function(location)&#123;  </span><br><span class="line">    </span><br><span class="line">    //继承LivingEntity所有属性。</span><br><span class="line">    LivingEntity.call(this, location);</span><br><span class="line">    //增加自己的属性。</span><br><span class="line">    this.canFly = true;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//继承LivingEntity原形链上的方法</span><br><span class="line">Dragon.prototype = Object.create(LivingEntity.prototype);</span><br><span class="line"></span><br><span class="line">//指向正确的构造函数。</span><br><span class="line">Dragon.prototype.constructor = Dragon;</span><br><span class="line"></span><br><span class="line">Dragon.prototype.fly = function(y)&#123;  </span><br><span class="line">    this.y += y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var sparky = new Dragon(&#123;  </span><br><span class="line">    x: 0,</span><br><span class="line">    y: 0,</span><br><span class="line">    z: 0</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在对象上调用属性时，首先检查该对象是否存在该属性，如果该属性不存在，则遍历其原型链中的每个链接，直到找到该属性或到达该结尾。 通过这种方式，即使moveWest没有在其直接原型中定义，sparky也可以使用moveWest。</p>
+<p>什么是sparky及其原型链看起来只有列出每个对象的特定属性？</p>
+<ul>
+<li>sparky<br> x<br>  y<br>  z<br> canFly   </li>
+<li>sparky.prototype (Dragon.prototype)<br>fly  </li>
+<li>sparky.prototype.prototype   (LivingEntity.prototype)<br>makeSound<br>moveWest  </li>
+<li>sparky.prototype.prototype.prototype   (Object.prototype)<br>create<br>toString<br>etc…  </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/03/JS原型链和继承/" data-id="cjlm3g0u00001bsut3wt9vf02" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/31/JS里的数据类型转换/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS里的数据类型转换</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE/">VUE</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/03/JS原型链和继承/">JS原型链和继承</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/31/JS里的数据类型转换/">JS里的数据类型转换</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/28/JS数据类型/">JS数据类型</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/27/typeofnull的历史/">typeof null的历史</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/24/什么是Vue-js/">什么是Vue.js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 purcy<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

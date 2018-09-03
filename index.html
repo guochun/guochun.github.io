@@ -62,6 +62,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS原型链和继承" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/03/JS原型链和继承/" class="article-date">
+  <time datetime="2018-09-03T09:35:42.000Z" itemprop="datePublished">2018-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/03/JS原型链和继承/">JS原型链和继承</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在下面的两部分文章我会用自己的想法来解释JavaScript的原型链和继承。</p>
+<p><strong>JavaScript一个被鄙视的编程语言</strong><br>可以说JavaScript是最被鄙视的编程语言之一。然而，它也是最被欢迎的编程语言之一，而且我每天会以2各种形式遇见他。</p>
+<p>大部分人的迷惑可能来至两个部分的迷惑: 原形链和作用域。<br>JavaScript有着和大部分其他编程语言不同的继承方式和作用域。我想能正确的理解你就可以了解到这些的潜力。</p>
+<p><strong>JavaScript的原形链</strong><br>JS有着完全不同于大部分面向对象语言有趣的继承模型。它实现面向对象的方式不是通过类而是通过方法。这是一个很重要概念去理解JS的面向对象。</p>
+<p><strong>JavaScript的构造器</strong><br>创建一个对象在JavaScript首先你必须定义一个构造函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var LivingEntity = function(location) &#123;</span><br><span class="line">   this.x = location.x;</span><br><span class="line">   this.y = location.y;</span><br><span class="line">   this.z = location.z;</span><br><span class="line">&#125;</span><br><span class="line">//创建一个新的实例</span><br><span class="line">var dog = new LivingEntity(&#123;</span><br><span class="line">    x: 5,</span><br><span class="line">    y：0，</span><br><span class="line">    z: 1</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这个构造函数不在是普通的函数。你可能注意到this的引用,this对于构造函数不是特殊的而且你可以在任何的函数内部去引用到它。通常这是重要的一点在执行函数的作用域中。</p>
+<p>创建一个对象的实例,我们需要用new关键字去调用构造函数。</p>
+<p><strong>方法</strong><br>来让我们看看如何添加一个方法吧。我们把声明的方法加moveWest。方法的功能让x的数值减一。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//在构造函数内部</span><br><span class="line">var LivingEntity = function(location)&#123;</span><br><span class="line">	this.x = location.x;</span><br><span class="line">	this.y = location.y;</span><br><span class="line">	this.z = location.z;</span><br><span class="line">	this.moveWest = function()&#123;</span><br><span class="line">		this.x--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//在构造函数之后</span><br><span class="line">dog.moveWest = function()&#123;</span><br><span class="line">	this.x--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样做不是使用原型构造对象的方法，并且这两种方法都会向内存中添加不必要的匿名函数。</p>
+<p>相反，我们可以在原型链中添加一个匿名函数！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LivingEntity.prototype.moveWest = function()&#123;</span><br><span class="line">	this.x--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果我们这样做，只有一个匿名函数，其引用传递给所有LivingEntity对象。</p>
+<p>但什么是<function> .prototype？ prototype是所有函数的一个属性，并指向一个对象，在该对象中可以分配属性，该属性能够从使用该函数创建的所有对象作为构造函数进行访问。</function></p>
+<p>每个对象都有prototype。我们可以修改它甚至是Object。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.a = 5;</span><br><span class="line"></span><br><span class="line">var v = &#123;&#125;;</span><br><span class="line">console.log(v.a); //5</span><br></pre></td></tr></table></figure>
+<p>对象的原型是一种在类的所有实例中存储公共属性的方法，但是以可重写的方式存储。 如果对象没有对属性的引用，则将检查该对象的原型以查找该属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">LivingEntity.prototype.makeSound = function()&#123;</span><br><span class="line">	console.log(&apos;meow&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//原型链上的</span><br><span class="line">dog.makeSound(); //meow</span><br><span class="line"></span><br><span class="line">dog.makeSound = function()&#123;</span><br><span class="line">	console.log(&apos;woof&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//自己本身的</span><br><span class="line">dog.makeSound(); //woof</span><br></pre></td></tr></table></figure>
+<p><strong>原形链</strong><br>每个对象都有一个原型，包括原型对象。 这个“链”一直向前，直到它到达一个没有原型的对象，通常是Object的原型。 Prototype的“继承”版本涉及在该原型链的末尾添加另一个链接，如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">var Dragon = function(location)&#123;  </span><br><span class="line">    </span><br><span class="line">    //继承LivingEntity所有属性。</span><br><span class="line">    LivingEntity.call(this, location);</span><br><span class="line">    //增加自己的属性。</span><br><span class="line">    this.canFly = true;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//继承LivingEntity原形链上的方法</span><br><span class="line">Dragon.prototype = Object.create(LivingEntity.prototype);</span><br><span class="line"></span><br><span class="line">//指向正确的构造函数。</span><br><span class="line">Dragon.prototype.constructor = Dragon;</span><br><span class="line"></span><br><span class="line">Dragon.prototype.fly = function(y)&#123;  </span><br><span class="line">    this.y += y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var sparky = new Dragon(&#123;  </span><br><span class="line">    x: 0,</span><br><span class="line">    y: 0,</span><br><span class="line">    z: 0</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在对象上调用属性时，首先检查该对象是否存在该属性，如果该属性不存在，则遍历其原型链中的每个链接，直到找到该属性或到达该结尾。 通过这种方式，即使moveWest没有在其直接原型中定义，sparky也可以使用moveWest。</p>
+<p>什么是sparky及其原型链看起来只有列出每个对象的特定属性？</p>
+<ul>
+<li>sparky<br> x<br>  y<br>  z<br> canFly   </li>
+<li>sparky.prototype (Dragon.prototype)<br>fly  </li>
+<li>sparky.prototype.prototype   (LivingEntity.prototype)<br>makeSound<br>moveWest  </li>
+<li>sparky.prototype.prototype.prototype   (Object.prototype)<br>create<br>toString<br>etc…  </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/03/JS原型链和继承/" data-id="cjlm3g0u00001bsut3wt9vf02" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JS里的数据类型转换" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/31/JS里的数据类型转换/" class="article-date">
@@ -177,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/31/JS里的数据类型转换/" data-id="cjlh2ra98000358ut19pvogov" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/31/JS里的数据类型转换/" data-id="cjlm3g0ua0007bsutng8i0vzy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
@@ -235,7 +302,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/28/JS数据类型/" data-id="cjlh2ra9j000458utus2r5ij8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/28/JS数据类型/" data-id="cjlm3g0ua0006bsutz1dbdj5q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
@@ -291,7 +358,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/27/typeofnull的历史/" data-id="cjlh2ra9j000558utshavbu4i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/27/typeofnull的历史/" data-id="cjlm3g0ua0009bsuth521eenh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
@@ -344,7 +411,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/24/什么是Vue-js/" data-id="cjlh2ra9j000858utw7ud6dzz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/24/什么是Vue-js/" data-id="cjlm3g0ua000dbsutnmvmi2ir" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VUE/">VUE</a></li></ul>
@@ -425,7 +492,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/08/CSS布局的那些事/" data-id="cjlh2ra98000058utc7zirtlj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/08/CSS布局的那些事/" data-id="cjlm3g0uu000hbsuts33tlnk1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -544,7 +611,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/07/CSS如何实现元素居中/" data-id="cjlh2ra98000158ut5nffr3vv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/07/CSS如何实现元素居中/" data-id="cjlm3g0tq0000bsutbyfn63a3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -599,7 +666,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/04/用CSS如何画太极图/" data-id="cjlh2ra9j000958utkv994el5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/04/用CSS如何画太极图/" data-id="cjlm3g0ua000bbsut8uf8o4ef" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -634,7 +701,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a>
+      <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a>
     </div>
   </div>
 
@@ -643,7 +710,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
     </div>
   </div>
 
@@ -654,6 +721,10 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/09/03/JS原型链和继承/">JS原型链和继承</a>
+          </li>
         
           <li>
             <a href="/2018/08/31/JS里的数据类型转换/">JS里的数据类型转换</a>
@@ -669,10 +740,6 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
         
           <li>
             <a href="/2018/08/24/什么是Vue-js/">什么是Vue.js</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/08/CSS布局的那些事/">CSS布局的那些事</a>
           </li>
         
       </ul>
