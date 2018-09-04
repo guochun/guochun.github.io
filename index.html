@@ -62,6 +62,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-初探JS数组" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/04/初探JS数组/" class="article-date">
+  <time datetime="2018-09-04T13:16:50.000Z" itemprop="datePublished">2018-09-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/04/初探JS数组/">初探JS数组</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是数组？"><a href="#什么是数组？" class="headerlink" title="什么是数组？"></a>什么是数组？</h1><p>数组(arry)是一种线性的数据结构是一种数据的容器,数组的按照顺序将数据进行排序。对于所有的编程语言都会有数组的概念。但是JS的数组又与传统的数组不同(C语言)它更像一些编程语言的集合(动态数组)。</p>
+<p>在JaveScript里数组只是一个内置特殊的对象(Array)。<br>==Array对象== 是用于构造数组的全局对象，数组是类似于列表的高阶对象</p>
+<hr>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> [] === <span class="string">"object"</span> <span class="comment">// true</span></span><br><span class="line">[] <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call([]); <span class="comment">//[Object Array]</span></span><br></pre></td></tr></table></figure>
+<h3 id="1：-创建数组："><a href="#1：-创建数组：" class="headerlink" title="1： 创建数组："></a>1： 创建数组：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建数组主要两种有方式： 1： 通过字面量的形式[ ] 数组的元素通过一对中括号包裹  2： 第二种通过构造函数 new Array();</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//通过字面量的形式创建了有4个元素的数组 </span></span><br><span class="line"><span class="keyword">var</span> colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>, <span class="string">'yellow'</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过length可以获取数组的长度</span></span><br><span class="line"><span class="keyword">var</span> len = colors.length;</span><br><span class="line"><span class="built_in">console</span>.log(len);    <span class="comment">// 4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//通过构造函数创建数组</span></span><br><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>, <span class="string">'yellow'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//接下来我们再用构造函数创建一些数组来深发一下里面的坑。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr1 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"a"</span>);                  <span class="comment">// ['a']  创建只有一个字符串元素 'a' 的数组。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="literal">true</span>);               <span class="comment">// [true]  创建只有一个boolean元素 true 数组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr3 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="literal">undefined</span>);   <span class="comment">// [undefined] 创建只有一个undefined数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//注意： 当只有一个参数 而且参数为整数 ,参数作为了数组的长度。</span></span><br><span class="line"><span class="keyword">var</span> arr4 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>);  <span class="comment">// [,,,]   创建了长度为3  空元素的数组。 空元素并不代表 null 和 undefine。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr5 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>); <span class="comment">// 创建了四个Number类型元素的数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//当只有一个参数 而且参数为小数 NaN  INFINITY 会抛出异常。</span></span><br><span class="line"><span class="keyword">var</span> arr6 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="literal">NaN</span>);  <span class="comment">//    Uncaught RangeError: Invalid array length</span></span><br><span class="line"></span><br><span class="line">总结： 在开发过程中尽量使用字面量[] 初始化数组。</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="2-通过索引访问数组元素"><a href="#2-通过索引访问数组元素" class="headerlink" title="2:  通过索引访问数组元素"></a>2:  通过索引访问数组元素</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>, <span class="string">'yellow'</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">0</span>]); <span class="comment">//访问数组第一个元素  “red” 数组下表从0开始</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(colors[colors.length - <span class="number">1</span>]); <span class="comment">//访问数组最后一个元素 'yellow'</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="3：-遍历数组"><a href="#3：-遍历数组" class="headerlink" title="3： 遍历数组"></a>3： 遍历数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>, <span class="string">'yellow'</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历数组主要有3种方法 </span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span>: <span class="keyword">for</span>循环</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; colors.length; i++)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(colors[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>: forEach方法</span><br><span class="line"></span><br><span class="line">fruits.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item, index, array</span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(item, index);&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>：<span class="keyword">for</span> <span class="keyword">of</span> 迭代器 ES6语法</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> item <span class="keyword">of</span> colors)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="4-从数组头部和尾部添加删除元素"><a href="#4-从数组头部和尾部添加删除元素" class="headerlink" title="4: 从数组头部和尾部添加删除元素"></a>4: 从数组头部和尾部添加删除元素</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>, <span class="string">'yellow'</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//数组的尾部添加元素返回数组添加元素之后的长度</span></span><br><span class="line">color.push(<span class="string">'white'</span>);  <span class="comment">//5   ['red', 'blue', 'green', 'yellow', 'white']</span></span><br><span class="line"><span class="comment">//数组尾部删除一个元素返回删除的元素</span></span><br><span class="line">color.pop(); <span class="comment">// 'white'  ['red', 'blue', 'green', 'yellow']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//数组的头部添加元素返回数组添加元素之后的长度</span></span><br><span class="line">color.unshift(<span class="string">'black'</span>); <span class="comment">//5 ['black', 'red', 'blue', 'green', 'yellow']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//数组头部删除一个元素返回删除的元素</span></span><br><span class="line">color.shift();<span class="comment">// 'black' ['red', 'blue', 'green', 'yellow']</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="5-找出某个元素在数组中的索引"><a href="#5-找出某个元素在数组中的索引" class="headerlink" title="5:  找出某个元素在数组中的索引"></a>5:  找出某个元素在数组中的索引</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>, <span class="string">'yellow'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> index = colors.indexOf(<span class="string">'blue'</span>);</span><br><span class="line"><span class="comment">// index  1</span></span><br><span class="line"></span><br><span class="line">index = colors.indexOf(<span class="string">'white'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当指定的元素在数组中查找不到返回返回  index -1</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="6：-复制一个数组"><a href="#6：-复制一个数组" class="headerlink" title="6： 复制一个数组"></a>6： 复制一个数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>, <span class="string">'yellow'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> colorsCopy = colors.slice(); <span class="comment">// ['red', 'blue', 'green', 'yellow']   colorsCopy != colors</span></span><br><span class="line"></span><br><span class="line">colors.concat([]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6 语法</span></span><br><span class="line">colorsCopy = [ ...colors];</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from(colors);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="7-数组转换字符串"><a href="#7-数组转换字符串" class="headerlink" title="7:数组转换字符串"></a>7:数组转换字符串</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>, <span class="string">'yellow'</span>];</span><br><span class="line">colors + <span class="string">''</span></span><br><span class="line">colors.toString()  <span class="comment">//'red,blue,green,yellow' 把数组的每一项转化为字符串并以逗号(,)进行分割。</span></span><br><span class="line">color.join(<span class="string">""</span>) <span class="comment">//redbluegreenyellow  join方法接受一个参数转为分割字符串的分隔符。</span></span><br><span class="line">所以 colors.toString() 和 color.join(<span class="string">","</span>) 得到的结果相同。</span><br><span class="line">colors.toString() === color.join(<span class="string">","</span>) <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/04/初探JS数组/" data-id="cjlnqq05y0008wsutdik0vh3n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Flex布局" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/03/Flex布局/" class="article-date">
@@ -220,7 +275,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/03/Flex布局/" data-id="cjlmgfdrz0000j0utok54in4z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/03/Flex布局/" data-id="cjlnqq05o0000wsutteyghsad" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -287,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/03/JS原型链和继承/" data-id="cjlmgfdsz000jj0utzgw58wpb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/03/JS原型链和继承/" data-id="cjlnqq06i000lwsutisyt9i5u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
@@ -414,7 +469,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/31/JS里的数据类型转换/" data-id="cjlmgfds60003j0utrr8rr4v8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/31/JS里的数据类型转换/" data-id="cjlnqq05y0003wsutmumthnis" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
@@ -472,7 +527,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/28/JS数据类型/" data-id="cjlmgfds30001j0utm59jinsn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/28/JS数据类型/" data-id="cjlnqq05o0001wsut4k39qf2c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
@@ -528,7 +583,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/27/typeofnull的历史/" data-id="cjlmgfds70004j0ut5td3qz2x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/27/typeofnull的历史/" data-id="cjlnqq05y0004wsut33lmlfbn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
@@ -581,7 +636,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/24/什么是Vue-js/" data-id="cjlmgfds80005j0utdtlsxe1e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/24/什么是Vue-js/" data-id="cjlnqq05y0005wsutuofoqlm6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VUE/">VUE</a></li></ul>
@@ -662,7 +717,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/08/CSS布局的那些事/" data-id="cjlmgfdt0000kj0utja1921kz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/08/CSS布局的那些事/" data-id="cjlnqq06i000mwsutuqvtcftq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -781,7 +836,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/07/CSS如何实现元素居中/" data-id="cjlmgfdsr000hj0utbyjt18ub" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/07/CSS如何实现元素居中/" data-id="cjlnqq068000cwsutw2ii5t50" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -836,7 +891,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/04/用CSS如何画太极图/" data-id="cjlmgfdsa0008j0ut1vol1h53" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/04/用CSS如何画太极图/" data-id="cjlnqq05y0009wsutb5zb4zsm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
@@ -871,7 +926,7 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a>
+      <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a>
     </div>
   </div>
 
@@ -893,6 +948,10 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
       <ul>
         
           <li>
+            <a href="/2018/09/04/初探JS数组/">初探JS数组</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/03/Flex布局/">Flex布局</a>
           </li>
         
@@ -906,10 +965,6 @@ null(JSVAL_NULL)是机器码的NULL指针.并且 对象类型的标签也被当�
         
           <li>
             <a href="/2018/08/28/JS数据类型/">JS数据类型</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/27/typeofnull的历史/">typeof null的历史</a>
           </li>
         
       </ul>
